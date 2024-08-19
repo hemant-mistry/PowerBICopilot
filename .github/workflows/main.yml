@@ -24,11 +24,11 @@ jobs:
 
       - name: Install dependencies, build, and test
         run: |
-          cd frontend\powerbi-copilot-ui
+          cd frontend/powerbi-copilot-ui
           npm install
           npm run build --if-present
           npm run test --if-present
-         # Other scripts if configured should be added here, such as linting, formating
+         # Other scripts if configured should be added here, such as linting, formatting
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -45,8 +45,6 @@ jobs:
       name: 'Production'
       url: 'https://powerbicustomcopilot.azurewebsites.net/'
 
-    
-      
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
