@@ -3,3 +3,4 @@ requests==2.31.0
 flask-cors==3.0.10
 openai==0.27.4
 msal==1.22.0
+Werkzeug==2.2.2
