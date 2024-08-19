@@ -3,7 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
+
+
 
 .logo {
   height: 6em;
@@ -39,4 +42,8 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.animate-fill {
+  animation: fillBackground 1s ease-in-out;
 }
