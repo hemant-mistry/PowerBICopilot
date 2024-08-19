@@ -247,8 +247,8 @@ function Chatbot() {
   return (
     <>
       {isFirstMessage ? (
-        <div className="flex flex-col pt-[80px]">
-          <div className="flex flex-col text-center mx-auto w-full max-w-2xl">
+        <div className="flex flex-col">
+          <div className="flex flex-col text-center mx-auto w-full max-w-md"> {/* Updated max-w-2xl to max-w-xl */}
             <h1 className="lg:text-5xl sm:text-5xl font-bold">Welcome back!</h1>
             <p className="py-6 lg:text-lg sm:text-lg">
               This is a POC Power BI Custom Copilot trained on the semantic
@@ -259,8 +259,8 @@ function Chatbot() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center pt-[80px]">
-          <div className="flex flex-col overflow-y-auto text-md w-full max-w-2xl h-[70vh] sm:h-[40vh] lg:h-[65vh] p-4 no-scrollbar">
+        <div className="flex flex-col items-center">
+          <div className="flex flex-col overflow-y-auto text-md w-full max-w-md h-[70vh] sm:h-[40vh] lg:h-[65vh] p-4 no-scrollbar"> {/* Updated max-w-2xl to max-w-xl */}
             {messages.map((msg, index) => (
               <div key={index} className="mb-4 flex items-start">
                 <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mr-5">
@@ -283,7 +283,7 @@ function Chatbot() {
       )}
 
       <div className="fixed h-50 w-full p-2 flex flex-col items-center gap-2 ml-3 bottom-5">
-        <div className="relative w-full max-w-2xl">
+        <div className="relative w-full max-w-md"> {/* Updated max-w-2xl to max-w-xl */}
           <div className="flex items-center relative">
             <textarea
               ref={textareaRef}
