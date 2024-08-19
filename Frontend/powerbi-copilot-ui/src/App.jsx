@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 
 import HeroImage from "./assets/FrameBackground.png"; // Import the background image
-import Chatbot from "./components/chatbot";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   return (
