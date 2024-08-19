@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
-import Chatbot from "./components/chatbot";
+
 
 import HeroImage from "./assets/FrameBackground.png"; // Import the background image
+import Chatbot from "./components/chatbot";
 
 function App() {
   return (
