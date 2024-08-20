@@ -5,12 +5,7 @@ import Report from "./components/Report";
 
 function App() {
   return (
-    <div
-      className="min-h-screen bg-cover bg-center flex"
-      style={{
-        backgroundImage: `url(${HeroImage})`, // Apply background image only after it's loaded
-      }}
-    >
+    <div className="min-h-screen bg-cover bg-center flex">
       <div className="flex-1 flex justify-center items-center ml-5">
         <Report />
       </div>

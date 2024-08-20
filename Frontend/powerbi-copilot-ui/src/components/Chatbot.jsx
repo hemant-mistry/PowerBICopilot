@@ -45,19 +45,26 @@ function Chatbot() {
     // Add "Processing..." bot message
     const processingMessage = {
       role: "bot",
-      content: "Processing...",
+      content: (
+        <div className="bg-gray-200 text-black rounded-lg px-3 py-2">
+          Processing...
+        </div>
+      ),
     };
     setMessages((prevMessages) => [...prevMessages, processingMessage]);
 
     try {
-      const response = await axios.post("https://powerbicopilotbackend.azurewebsites.net/api", {
-        message: userMessage.content,
-        chat_history: messages,
-      });
+      const response = await axios.post(
+        "https://powerbicopilotbackend.azurewebsites.net/api",
+        {
+          message: userMessage.content,
+          chat_history: messages,
+        }
+      );
 
       console.log("Response data:", response.data);
       const parsedReactComponentCode = response.data.react_component;
-      const intentClassifier = Number(response.data.intent_classifier); // Convert to number
+      const intentClassifier = Number(response.data.intent_classifier);
       const result = response.data.result;
 
       if (result && result.results && result.results[0]) {
@@ -69,34 +76,42 @@ function Chatbot() {
         switch (intentClassifier) {
           case 1:
             chartComponent = (
-              <AreaChart
-                data={rows}
-                reactComponentCode={parsedReactComponentCode}
-              />
+              <div className="bg-gray-200 text-black rounded-lg px-3 py-2">
+                <AreaChart
+                  data={rows}
+                  reactComponentCode={parsedReactComponentCode}
+                />
+              </div>
             );
             break;
           case 2:
             chartComponent = (
-              <BarChart
-                data={rows}
-                reactComponentCode={parsedReactComponentCode}
-              />
+              <div className="bg-gray-200 text-black rounded-lg px-3 py-2">
+                <BarChart
+                  data={rows}
+                  reactComponentCode={parsedReactComponentCode}
+                />
+              </div>
             );
             break;
           case 3:
             chartComponent = (
-              <LineChart
-                data={rows}
-                reactComponentCode={parsedReactComponentCode}
-              />
+              <div className="bg-gray-200 text-black rounded-lg px-3 py-2">
+                <LineChart
+                  data={rows}
+                  reactComponentCode={parsedReactComponentCode}
+                />
+              </div>
             );
             break;
           case 4:
             chartComponent = (
-              <PieChart
-                data={rows}
-                reactComponentCode={parsedReactComponentCode}
-              />
+              <div className="bg-gray-200 text-black rounded-lg px-3 py-2">
+                <PieChart
+                  data={rows}
+                  reactComponentCode={parsedReactComponentCode}
+                />
+              </div>
             );
             break;
           default:
@@ -109,8 +124,8 @@ function Chatbot() {
           role: "bot",
           content: chartComponent || (
             <div className="relative overflow-x-auto">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
+                <thead className="text-xs text-black uppercase bg-gray-100 dark:bg-gray-200 dark:text-black">
                   <tr>
                     {rows.length > 0 ? (
                       Object.keys(rows[0]).map((key, idx) => (
@@ -130,7 +145,7 @@ function Chatbot() {
                     rows.map((row, rowIndex) => (
                       <tr
                         key={rowIndex}
-                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                        className="bg-   border-b dark:bg-gray-200 dark:border-gray-700"
                       >
                         {Object.keys(row).map((key, cellIndex) => (
                           <td key={cellIndex} className="px-6 py-4">
@@ -199,20 +214,20 @@ function Chatbot() {
         >
           Show me the sum of profit by category
         </li>
-        
+
         <li
           onClick={() =>
-            handlePromptClick(
-              "Show me the top 5 products with highest sales"
-            )
+            handlePromptClick("Show me the top 5 products with highest sales")
           }
           className="cursor-pointer hover:text-blue-600"
         >
-         Show me the top 5 products with highest sales
+          Show me the top 5 products with highest sales
         </li>
         <li
           onClick={() =>
-            handlePromptClick("Can you show me sales by segment in a pie chart?")
+            handlePromptClick(
+              "Can you show me sales by segment in a pie chart?"
+            )
           }
           className="cursor-pointer hover:text-blue-600"
         >
@@ -220,7 +235,9 @@ function Chatbot() {
         </li>
         <li
           onClick={() =>
-            handlePromptClick("Show me the top 3 countries with the highest sales")
+            handlePromptClick(
+              "Show me the top 3 countries with the highest sales"
+            )
           }
           className="cursor-pointer hover:text-blue-600"
         >
@@ -245,12 +262,15 @@ function Chatbot() {
   };
 
   return (
-    <>
+    <div className="bg-gray-100 p-5 rounded-[10px] min-h-[700px] flex flex-col justify-between">
+      <div className="text-lg text-black mb-3 text-center font-bold">Custom Copilot</div>
       {isFirstMessage ? (
         <div className="flex flex-col">
-          <div className="flex flex-col text-center mx-auto w-full max-w-md"> {/* Updated max-w-2xl to max-w-xl */}
-            <h1 className="lg:text-5xl sm:text-5xl font-bold">Welcome back!</h1>
-            <p className="py-6 lg:text-lg sm:text-lg">
+          <div className="flex flex-col text-center mx-auto w-full max-w-md">
+            {" "}
+            {/* Updated max-w-2xl to max-w-xl */}
+            <h1 className="lg:text-2xl sm:text-5xl font-bold text-black">Welcome back!</h1>
+            <p className="py-6 lg:text-sm sm:text-lg text-black">
               This is a POC Power BI Custom Copilot trained on the semantic
               model.
               <br />
@@ -260,19 +280,30 @@ function Chatbot() {
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <div className="flex flex-col overflow-y-auto text-md w-full max-w-md h-[70vh] sm:h-[40vh] lg:h-[65vh] p-4 no-scrollbar"> {/* Updated max-w-2xl to max-w-xl */}
+          <div className="flex flex-col overflow-y-auto text-md w-full max-w-md h-[70vh] sm:h-[40vh] lg:h-[65vh] p-4 no-scrollbar">
+            {" "}
+            {/* Updated max-w-2xl to max-w-xl */}
             {messages.map((msg, index) => (
               <div key={index} className="mb-4 flex items-start">
-                <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mr-5">
-                  <span className="font-medium text-gray-600 dark:text-gray-300">
+                <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-200 mr-5 flex-shrink-0">
+                  {" "}
+                  <span className="font-medium text-gray-600">
                     {msg.role === "user" ? "US" : "AI"}
                   </span>
                 </div>
-                <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
+                <div className="relative max-w-[100%]">
                   {typeof msg.content === "string" ? (
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    <div
+                      className={`relative ${
+                        msg.role === "user"
+                          ? "bg-gray-200 text-black  self-end"
+                          : "bg-gray-200"
+                      } rounded-lg px-3 py-2`}
+                    >
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    </div>
                   ) : (
-                    msg.content
+                    <div>{msg.content}</div>
                   )}
                 </div>
               </div>
@@ -281,45 +312,22 @@ function Chatbot() {
           </div>
         </div>
       )}
-
-      <div className="fixed h-50 w-full p-2 flex flex-col items-center gap-2 ml-3 bottom-5">
-        <div className="relative w-full max-w-md"> {/* Updated max-w-2xl to max-w-xl */}
-          <div className="flex items-center relative">
-            <textarea
+      <div className="relative flex items-center justify-center mt-5">
+      <textarea
               ref={textareaRef}
               rows={1}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Type your message..."
-              className="w-full rounded-lg p-2 resize-none pr-[70px]"
-            />
-            <div className="flex items-center absolute right-2 top-0 h-full">
-              <button
-                className="btn"
-                onClick={() => setIsMenuVisible((prev) => !prev)}
-              >
-                 <img src={promptGuide} alt="prompt-guide" className="w-6 h-6" />
-              </button>
-              <button
-                className="flex items-center justify-center ml-5"
-                onClick={handleSendMessage}
-              >
-                <img src={sendIcon} alt="Send" className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-          {isMenuVisible && (
-            <PromptGuideMenu handlePromptClick={handlePromptClick} />
-          )}
-        </div>
-
-        <div className="prompt-caution text-center text-xs mt-2">
-          Responses may display inaccurate info, including about people, so
-          double-check its responses.
-        </div>
+              className="w-full rounded-lg p-2 resize-none bg-gray-200 border-none outline-none text-black"
+              />
+        <button className="ml-2" onClick={handleSendMessage} disabled={loading}>
+          <img src={sendIcon} alt="Send" />
+        </button>
       </div>
-    </>
+    </div>
   );
 }
+
 export default Chatbot;
