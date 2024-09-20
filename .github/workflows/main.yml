@@ -63,5 +63,5 @@ jobs:
         with:
           app-name: powerbicustomcopilot
           slot-name: 'Production'
-          publish-profile: ${{ secrets.POWERBICOPILOT_FRONTEND_SECRET }}
+          publish-profile: ${{ secrets.PBICUSTOMCOPILOT }}
           package: ./node-app
